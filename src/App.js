@@ -13,7 +13,16 @@ var config = {
 };
 firebase.initializeApp(config);
 
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showCreateRoom: false
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -21,7 +30,6 @@ class App extends Component {
           <h1 className="App-title">Bloc Chat</h1>
           <RoomList firebase={firebase}/>
         </header>
-        
       </div>
     );
   }
