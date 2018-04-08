@@ -3,3 +3,7 @@
   text-align: center;
   padding: 10px;
 }
+
+.active-room {
+  background-color: rgb(192, 28, 28);
+}

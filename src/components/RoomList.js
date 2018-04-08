@@ -7,8 +7,8 @@ class RoomList extends Component {
 
     this.state = {
       rooms:[],
-      showCreateRoom: true,
-      room: ""
+      showCreateRoom: false,
+      room: "",
     }
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
@@ -20,7 +20,6 @@ class RoomList extends Component {
       room.key = snapshot.key;
       this.setState({rooms: this.state.rooms.concat( room ) });
     });
-
   }
 
   toggleCreateRoom() {
@@ -40,11 +39,9 @@ class RoomList extends Component {
   addRoom() {
     this.roomsRef.push({
       name: this.state.room
-    })
+    });
     this.resetRoom();
   }
-
-
 
   createRoom() {
     if(this.state.showCreateRoom) {
@@ -54,7 +51,7 @@ class RoomList extends Component {
             <p>Enter name here</p>
             <input type="text" name="room" value={this.state.room} onChange={(e) => this.updateRoom(e)}/>
             <div>
-              <button onClick={() => this.addRoom()}>
+              <button type="button" onClick={() => this.addRoom()}>
                 Create
               </button>
               <button onClick={() => this.resetRoom()}>
@@ -66,20 +63,37 @@ class RoomList extends Component {
     }
   }
 
+  handleClick(room) {
+    this.props.setActiveRoom(room);
+  }
+
+  handleRoomClass(room) {
+    if(room.name === this.props.activeRoomName && room.key === this.props.activeRoomKey) {
+      return "active-room";
+    }
+    else {
+      return "room";
+    }
+  }
+
   render() {
     return (
-      <div className="room-list">
+      <section className="room-list">
         <button onClick={() => this.toggleCreateRoom()}>
         +
         </button>
-        {  this.state.rooms.map((room, index) => 
-            <p key={index} className="room">{room.name}</p>
+        <nav>
+        {  
+          this.state.rooms.map((room, index) => 
+            <div key={index} className={this.handleRoomClass(room)} onClick={() => this.handleClick(room)}>{room.name}</div>
           )
         }
+        </nav>
+
         <div>
           {this.createRoom()}
         </div>
-      </div>
+      </section>
     )
   }
 
