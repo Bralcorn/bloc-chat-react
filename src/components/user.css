@@ -1,0 +1,13 @@
+.user {
+  vertical-align: middle;
+  text-align: right;
+  float: right;
+}
+
+.display-name {
+  display: inline-block;
+}
+
+.signin {
+  display: inline-block;
+}

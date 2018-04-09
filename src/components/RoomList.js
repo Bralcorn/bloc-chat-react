@@ -79,17 +79,16 @@ class RoomList extends Component {
   render() {
     return (
       <section className="room-list">
-        <button onClick={() => this.toggleCreateRoom()}>
-        +
-        </button>
         <nav>
         {  
           this.state.rooms.map((room, index) => 
-            <div key={index} className={this.handleRoomClass(room)} onClick={() => this.handleClick(room)}>{room.name}</div>
+            <h2 key={index} className={this.handleRoomClass(room)} onClick={() => this.handleClick(room)}>{room.name}</h2>
           )
         }
         </nav>
-
+        <button onClick={() => this.toggleCreateRoom()}>
+          +
+        </button>
         <div>
           {this.createRoom()}
         </div>

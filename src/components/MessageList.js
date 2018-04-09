@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./MessageList.css";
 
 class MessageList extends Component {
   constructor(props) {
@@ -7,7 +8,6 @@ class MessageList extends Component {
     this.state ={
       messages: [],
       messageInput: "",
-      username: "TEST username"
     }
 
     this.messagesRef = this.props.firebase.database().ref('messages');
@@ -18,7 +18,6 @@ class MessageList extends Component {
     this.messagesRef.on('child_added', snapshot => {
       const message = snapshot.val();
       message.key = snapshot.key;
-      console.log(message);
       this.setState({messages: this.state.messages.concat(message)});
     });
   }
@@ -31,11 +30,11 @@ class MessageList extends Component {
     this.setState({messageInput: ""});
   }
 
-  addMessage() {
-    if(this.state.messageInput != "") {      
-      console.log(this.state.messages);
+  addMessage(e) {
+    e.preventDefault();
+    if(this.state.messageInput !== "") {      
       this.messagesRef.push({
-        username: this.state.username,
+        username: this.props.displayName,
         content: this.state.messageInput,
         sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
         roomId: this.props.activeRoomKey
@@ -44,18 +43,10 @@ class MessageList extends Component {
     };
   }
 
-  messageFilter() {
-    this.state.messages
-      .filter((message) => message.roomId === this.props.activeRoomKey)
-      .map((message, index) => {
-        <p>TEST</p>
-      })
-  }
-
   render() {
     return (
       <section className="message-list">
-        <h2>{this.props.activeRoomName}</h2>
+
         <div className="message-container">
           {
             this.state.messages
@@ -67,11 +58,11 @@ class MessageList extends Component {
                 </div>
               )
           }
-          <form>
-            <input type="text" className="message-input" value={this.state.messageInput} onChange={(e)=>this.updateMessage(e)}/>
-            <button type="button" onClick={() => this.addMessage()}>SEND</button>
-          </form>
         </div>
+        <form className="input-form" onSubmit={(e) => this.addMessage(e)}>
+          <input type="text" className="message-input" value={this.state.messageInput} onChange={(e)=>this.updateMessage(e)}/>
+          <button type="submit" >SEND</button>
+        </form>
       </section>
     )
   }
