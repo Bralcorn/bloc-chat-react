@@ -43,6 +43,14 @@ class MessageList extends Component {
     };
   }
 
+  handleDate(stamp) {
+    var theDate = new Date(stamp);
+    var dateString = theDate.toUTCString();
+    console.log(theDate);
+    return(dateString);
+
+  }
+
   render() {
     return (
       <section className="message-list">
@@ -53,15 +61,24 @@ class MessageList extends Component {
               .filter(message => message.roomId === this.props.activeRoomKey)
               .map((message, index) => 
                 <div key={index} className="message-container">
-                  <h4>{message.username}:</h4>
-                  <p>{message.content}</p>
+                  <h4 className="message-user">{message.username}:</h4>
+                  <div className="date">{this.handleDate(message.sentAt)}</div>
+                  <p className="message">{message.content}</p>
                 </div>
               )
           }
         </div>
         <form className="input-form" onSubmit={(e) => this.addMessage(e)}>
-          <input type="text" className="message-input" value={this.state.messageInput} onChange={(e)=>this.updateMessage(e)}/>
-          <button type="submit" >SEND</button>
+          <div className="stretch">
+            <input type="text" 
+              placeholder="Type message here" 
+              className="message-input" 
+              value={this.state.messageInput} 
+              onChange={(e)=>this.updateMessage(e)}/>
+          </div>
+          <div className ="normal">
+            <button className="message-submit" type="submit" >SEND</button>
+          </div>
         </form>
       </section>
     )

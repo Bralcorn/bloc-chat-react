@@ -1,19 +1,63 @@
 .message-list {
   top: 4em;
   bottom: 0;
-  left: 17em;
+  left: 15em;
   right: 0em;
   position: absolute;
   padding: 1em;
 }
 
+.message-container {
+  border-bottom: 1px solid rgb(196, 196, 196);
+  border-top: 1px solid rgb(196, 196, 196);
+}
 
+.message-user {
+  width: auto;
+  margin: 0.5em 0;
+  float: left;
+}
+
+.date {
+  float: right;
+  margin: 0.5em 0;
+}
+
+.message {
+  clear: both;
+  margin: 0.5em 0;
+}
 
 .input-form {
   background-color: rgb(75, 75, 75);
+  display: flex;
   bottom: 0;
   right: 0;
-  left: 17em;
+  left: 15em;
   height: 2em;
   position: fixed;
+}
+
+.stretch {
+  flex: 1;
+}
+
+.normal {
+  flex: 0;
+  margin: 0 0 0 1em;
+}
+
+.message-input {
+  height: 2em;
+  padding-left: 1em;
+  width: 100%;
+  border: 1px solid (196, 196, 196);
+}
+
+.message-submit {
+  white-space: nowrap;
+  background-color: rgb(54, 54, 54);
+  border: 1px solid rgb(54, 54, 54);
+  color: white;
+  height: 100%;
 }

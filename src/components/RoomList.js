@@ -86,8 +86,8 @@ class RoomList extends Component {
           )
         }
         </nav>
-        <button onClick={() => this.toggleCreateRoom()}>
-          +
+        <button className="add-button" onClick={() => this.toggleCreateRoom()}>
+          Create new room
         </button>
         <div>
           {this.createRoom()}

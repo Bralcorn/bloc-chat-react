@@ -8,12 +8,17 @@
   background-color: rgb(54, 54, 54);
   margin:0;
   padding: 0.5em;
+  margin-left: 1em;
+  cursor: pointer;
 }
 
 .room {
   font-size: 1.1em;
   margin:0;
   padding: 0.5em;
+  cursor: pointer;
+  margin-left: 2em;
+  background-color: rgb(107, 107, 107);
 }
 
 .room-list {
@@ -22,10 +27,17 @@
   bottom: 0;
   position: absolute;
   width: 15em;
-  padding-left: 2em;
-  padding-top: 2em;
   color: white;
   float: left;
   clear: left;
-  z-index: -1;
+  text-align: center;
+}
+
+.add-button {
+  margin: 2em;
+}
+
+nav {
+  text-align: left;
+  margin-top: 2em;
 }
